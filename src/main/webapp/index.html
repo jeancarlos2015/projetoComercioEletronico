@@ -21,7 +21,7 @@
             <ul class="nav nav-pills">
                 <li role="presentation" class="active"><a href="index.html">Pedidos</a></li>
                 <li role="presentation"><a href="cadastroProdutos.html">Produtos</a></li>
-                <li role="presentation"><a href="pedidos.html">Itens</a></li>
+                <li role="presentation"><a href="cadastroItens.html">Itens</a></li>
             </ul>
         </nav>
         
@@ -65,28 +65,8 @@
                             <figcaption class="figure-caption">Coca Cola</figcaption>
                         </figure> 
                     </div>
-                    <button type="submit" class="btn btn-default campo" onclick="verifica()">Incluir</button>
+                    <button type="submit" class="btn btn-default campo" onclick="verifica()">Solicitar Pedido</button>
                 </form>
-        <form method="post" action="CodServidor">
-            
-            
-           <div class="campo">
-                <span class="input-group-addon" id="basic-addon1" >Codigo Do Pedido</span>
-                <input id="codigo" type="text" class="form-control" name="codigo_pedido"  placeholder="1" required="required" aria-describedby="basic-addon1">
-           </div>
-                
-            <div class="campo">
-                <span class="input-group-addon" id="basic-addon1" >Codigo Do Pedido</span>
-                <input id="codigo" type="text" class="form-control" name="codigo_pedido"  placeholder="1" required="required" aria-describedby="basic-addon1">
-            </div>
-            <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
-            <div class="container" style="display:none;" id="myAlert">
-                <div class="alert alert-success alert-dismissable" id="myAlert2">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <br>
-                    Pedido Cadastrado Com sucesso!!!
-                </div>
-            </div>
-        </form>
+        
     </body>
 </html>
