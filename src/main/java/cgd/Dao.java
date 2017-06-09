@@ -5,6 +5,7 @@
  */
 package cgd;
 
+import cdp.Objeto;
 import cdp.Pedido;
 import java.util.List;
 
@@ -13,8 +14,9 @@ import java.util.List;
  * @author jean
  */
 public interface Dao {
-    public List<Pedido> listar();
-    public void inserir();
-    public void deletar();
-    public void set(Object objeto);
+    public List<Objeto> listar();
+    public boolean inserir();
+    public boolean deletar();
+    public boolean existe(Objeto objeto);
+    public void set(Objeto objeto);
 }

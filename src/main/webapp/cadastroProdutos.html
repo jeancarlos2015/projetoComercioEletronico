@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/estilo.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/funcoes.js"></script>
+        <title>Cadastro De Pedidos</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="index.html">Pedidos</a></li>
+                <li role="presentation"><a href="cadastroProdutos.html">Produtos</a></li>
+                <li role="presentation"><a href="pedidos.html">Itens</a></li>
+            </ul>
+        </nav>
+        <div class="jumbotron">
+            <h1>
+                <th class="align-center">Cadastro De Produtos</th>
+            </h1>
+        </div>
+
+        <form method="post" action="CodServidor">
+            <div class="input-group campo">
+                <span class="input-group-addon" id="basic-addon1" >Codigo</span>
+                <input id="codigo" type="text" class="form-control" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
+            </div>
+            <br> 
+            <div class="input-group campo">
+                <span class="input-group-addon" id="basic-addon1" >Descrição</span>
+                <input id="descricao" type="text" class="form-control" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group campo">
+                <span class="input-group-addon" id="basic-addon1">Marca</span>
+                <input id="marca" type="text" class="form-control" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group campo">
+                <span class="input-group-addon" id="basic-addon1">Quantidade</span>
+                <input id="quantidade" type="text" class="form-control" name="quantidade"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            </div>
+            <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
+            
+            <div class="container" style="display:none;" id="myAlert">
+  
+                <div class="alert alert-success alert-dismissable" id="myAlert2">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <br>
+                    <br>
+                    Pedido Cadastrado Com sucesso!!!
+                </div>
+            </div>
+
+          
+
+        </form>
+        <br>
+        <br>
+    </body>
+</html>

@@ -2,6 +2,8 @@ package cdp;
 
 
 import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,68 +15,87 @@ import com.google.gson.Gson;
  *
  * @author jean
  */
-public class Pedido {
-    private String descr, marca;
-    private int quantidade,codigo;
-    
-    public Pedido(String descr, String marca, int quantidade, int codigo){
-        this.descr = descr;
-        this.marca = marca;
-        this.quantidade = quantidade;
-        this.codigo = codigo;
+public class Pedido extends ObjetoAbstract{
+    private String codigo="";
+    private String data="";
+    private List<Produto> itens=null;
+    private String cnpj;
+    private float valor_total;
+    public Pedido(){
+        itens = new ArrayList<>();
     }
-    public int getCodigo(){
+    public boolean adicionaItem(Produto item){
+        return itens.add(item);
+    }
+    
+    public List<Produto> listarItens(){
+        return itens;
+    }
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
         return codigo;
     }
-    
-    public void setCodigo(int codigo){
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
     /**
-     * @return the descr
+     * @return the data
      */
-    public String getDescr() {
-        return descr;
+    public String getData() {
+        return data;
     }
 
     /**
-     * @param descr the descr to set
+     * @param data the data to set
      */
-    public void setDescr(String descr) {
-        this.descr = descr;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    /**
-     * @return the marca
-     */
-    public String getMarca() {
-        return marca;
-    }
-
-    /**
-     * @param marca the marca to set
-     */
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    /**
-     * @return the quantidade
-     */
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    /**
-     * @param quantidade the quantidade to set
-     */
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-  
-    
     @Override
-    public String toString(){
-        return ""+codigo+" "+descr+" "+marca+" "+ quantidade;
+    public String[] getAtributos() {
+        
+        String vetor[] = {"codigo_pedido","cnpj","data_produto","valor_total"};
+        return vetor;
+      
+        
     }
+
+    /**
+     * @return the cnpj
+     */
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    /**
+     * @param cnpj the cnpj to set
+     */
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    /**
+     * @return the valor_total
+     */
+    public float getValor_total() {
+        return valor_total;
+    }
+
+    /**
+     * @param valor_total the valor_total to set
+     */
+    public void setValor_total(float valor_total) {
+        this.valor_total = valor_total;
+    }
+    
+    
+    
 }
