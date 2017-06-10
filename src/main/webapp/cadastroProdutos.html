@@ -16,9 +16,9 @@
     <body>
         <nav class="navbar navbar-inverse">
             <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="index.html">Pedidos</a></li>
-                <li role="presentation"><a href="cadastroProdutos.html">Produtos</a></li>
-                <li role="presentation"><a href="cadastroFornecedor.html">Fornecedor</a></li>
+                <li role="presentation" ><a href="index.html">Pedidos</a></li>
+                <li role="presentation" class="active"><a href="cadastroProdutos.html">Produtos</a></li>
+                <li role="presentation" ><a href="cadastroFornecedor.html">Fornecedor</a></li>
             </ul>
         </nav>
         <div class="jumbotron">
@@ -28,38 +28,22 @@
         </div>
 
         <form method="post" action="Controlador">
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1" >Codigo</span>
-                <input id="codigo" type="text" class="form-control" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
-            </div>
-            <br> 
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1" >Descrição</span>
-                <input id="descricao" type="text" class="form-control" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1">Marca</span>
-                <input id="marca" type="text" class="form-control" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1">Quantidade</span>
-                <input id="quantidade" type="text" class="form-control" name="quantidade"  placeholder="0" required="required" aria-describedby="basic-addon1">
-            </div>
-            <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
             
-            <div class="container" style="display:none;" id="myAlert">
-  
-                <div class="alert alert-success alert-dismissable" id="myAlert2">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <br>
-                    <br>
-                    Pedido Cadastrado Com sucesso!!!
-                </div>
-            </div>
-
-          
+            <span class="campo" id="basic-addon1" >Codigo</span>
+            <input id="codigo" type="text" class="campo" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
+            
+            <span class="campo" id="basic-addon1" >Descrição</span>
+            <input id="descricao" type="text" class="campo" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
+            
+            <span class="campo" id="basic-addon1">Marca</span>
+            <input id="marca" type="text" class="campo" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
+                
+            <span class="campo" id="basic-addon1">Quantidade</span>
+            <input id="quantidade" type="text" class="campo" name="quantidade"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            
+            <input  type="text" class="oculto" name="tipo" value="produto">
+            <input  type="text" class="oculto" name="operacao" value="cadastro">
+            <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
 
         </form>
         <br>

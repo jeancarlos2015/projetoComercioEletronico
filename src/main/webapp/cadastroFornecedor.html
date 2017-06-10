@@ -18,9 +18,9 @@
     <body>
         <nav class="navbar navbar-inverse">
             <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="index.html">Pedidos</a></li>
-                <li role="presentation"><a href="cadastroProdutos.html">Produtos</a></li>
-                <li role="presentation"><a href="cadastroFornecedor.html">Fornecedor</a></li>
+                <li role="presentation" ><a href="index.html">Pedidos</a></li>
+                <li role="presentation" ><a href="cadastroProdutos.html">Produtos</a></li>
+                <li role="presentation" class="active"><a href="cadastroFornecedor.html">Fornecedor</a></li>
             </ul>
         </nav>
         <div class="jumbotron">
@@ -31,25 +31,17 @@
         <br>
 
         <form method="post" action="Controlador">
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1" >Valor Unitário</span>
-                <input id="codigo" type="text" class="form-control" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group campo">
-                <span class="input-group-addon" id="basic-addon1" >Valor Total</span>
-                <input id="descricao" type="text" class="form-control" name="data"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
-            </div>
-            
-            <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>            
-            <div class="container" style="display:none;" id="myAlert">
-  
-                <div class="alert alert-success alert-dismissable" id="myAlert2">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <br>
-                    <br>
-                    Pedido Cadastrado Com sucesso!!!
-                </div>
-            </div>
+            <span class="campo" id="basic-addon1" >CNPJ</span>
+            <input type="text" class="campo" name="cnpj"  placeholder="XX.XXX.XXX/YYYY-ZZ" required="required" aria-describedby="basic-addon1">
+            <span class="campo" id="basic-addon1" >Nome Do Fornecedor</span>
+            <input type="text" class="campo" name="nome"  placeholder="Fulano" required="required" aria-describedby="basic-addon1">
+            <span class="campo" id="basic-addon1" >Endereço</span>
+            <input type="text" class="campo" name="endereco"  placeholder="Endereço" required="required" aria-describedby="basic-addon1">
+            <span class="campo" id="basic-addon1" >Email</span>
+            <input type="text" class="campo" name="email"  placeholder="Fulano" required="required" aria-describedby="basic-addon1">
+            <input  type="text" class="oculto" name="tipo" value="fornecedor">
+            <input  type="text" class="oculto" name="operacao" value="cadastro">
+            <button type="submit" class="btn btn-default campo">Cadastrar</button>            
         </form>
         <br>
         <br>
