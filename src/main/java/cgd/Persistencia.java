@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author jean
  */
-public class ConexaoBanco {
+public class Persistencia {
     private String url="jdbc:postgresql://localhost:5432/bancoPedidos", 
             usuario="postgres", senha="ifes";
     private Connection con;

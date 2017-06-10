@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class DaoProduto implements Dao{
     private Produto p;
-    private ConexaoBanco conexao;
+    private Persistencia conexao;
     @Override
     public List<Objeto> listar() {
         String comando=" SELECT *FROM PRODUTO";
@@ -41,21 +41,20 @@ public class DaoProduto implements Dao{
     }
 
     @Override
-    public boolean inserir() {
+    public boolean cadastrar(Objeto objeto) {
+        p = (Produto) objeto;
         String comando = "INSERT INTO PEDIDO(codigo_produto,codigo_pedido, cnpj, descricao, nome, marca, quantidade_unit, quantidade_estoq, preco) VALUES('"+p.getCodigo_produto()+"','"+p.getCodigo_pedido()+"','"+p.getCnpj()+"','"+p.getDescricao()+"','"+p.getNome()+"','"+p.getMarca()+"',"+p.getQuantidade_unit()+","+p.getQuantidade_estoq()+")";    
         return conexao.executar(comando);
     }
 
     @Override
-    public boolean deletar() {
+    public boolean excluir(Objeto objeto) {
+        p = (Produto) objeto;
         String comando = "DELETE FROM PEDIDO WHERE cnpj='"+p.getCnpj()+"'";
         return conexao.executar(comando);
     }
 
-    @Override
-    public void set(Objeto objeto) {
-        p = (Produto) objeto;
-    }
+    
 
     @Override
     public boolean existe(Objeto objeto) {

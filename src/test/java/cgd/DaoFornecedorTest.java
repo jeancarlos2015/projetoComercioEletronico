@@ -30,7 +30,7 @@ public class DaoFornecedorTest {
         Dao dao = new DaoFornecedor();
         Fornecedor f = new Fornecedor();
         f.setCnpj("12341234124");
-        System.out.println(dao.existe(f));
+        assertTrue(dao.existe(f));
     }
     /**
      * Test of inserir method, of class DaoFornecedor.

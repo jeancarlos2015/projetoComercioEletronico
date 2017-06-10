@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class DaoFornecedor implements Dao{
     private Fornecedor f;
-    private ConexaoBanco conexao;
+    private Persistencia conexao;
     
     public DaoFornecedor(){
-        conexao = new ConexaoBanco();
+        conexao = new Persistencia();
     }
     
     @Override
@@ -40,22 +40,21 @@ public class DaoFornecedor implements Dao{
     }
 
     @Override
-    public boolean inserir() {
+    public boolean cadastrar(Objeto objeto) {
+        f = (Fornecedor) objeto;
         String comando = "INSERT INTO FORNECEDOR(cnpj, nome, endereco) VALUES('"+f.getCnpj()+"','"+f.getNome()+"','"+f.getEndereco()+"')";    
         return conexao.executar(comando);
     }
 
     @Override
-    public boolean deletar() {
+    public boolean excluir(Objeto objeto) {
+        f = (Fornecedor) objeto;
         String comando = "DELETE FROM FORNECEDOR WHERE cnpj='"+f.getCnpj()+"'";
         return conexao.executar(comando);
     }
 
     
-    @Override
-    public void set(Objeto objeto){
-        f = (Fornecedor) objeto;
-    }
+    
 
     @Override
     public boolean existe(Objeto objeto) {

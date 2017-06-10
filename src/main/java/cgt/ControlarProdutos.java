@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cgd;
+package cgt;
+
 
 import cdp.Objeto;
 import java.util.List;
+import padroes.Fabrica;
+import static padroes.Tipo.produto;
 
 /**
  *
  * @author jean
  */
-public interface Dao {
-    public List<Objeto> listar();
-    public boolean cadastrar(Objeto objeto);
-    public boolean excluir(Objeto objeto);
-    public boolean existe(Objeto objeto);
+public class ControlarProdutos extends Controlar{
+
+    public ControlarProdutos() {
+        super(Fabrica.make(produto));
+    }
+
+    
 }

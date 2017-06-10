@@ -20,7 +20,7 @@ public class ConexaoBancoTest {
     }
 
     /**
-     * Test of executar method, of class ConexaoBanco.
+     * Test of executar method, of class Persistencia.
      */
     @Test
     public void testObterColunas() {
@@ -30,11 +30,11 @@ public class ConexaoBancoTest {
     }
 
     /**
-     * Test of executarSelecao method, of class ConexaoBanco.
+     * Test of executarSelecao method, of class Persistencia.
      */
     @Test
     public void testExecutarSelecao() {
-         ConexaoBanco conexao = new ConexaoBanco();
+         Persistencia conexao = new Persistencia();
          Fornecedor fo = new Fornecedor();
          fo.setCnpj("123412341234");
          String comando=" SELECT cnpj FROM FORNECEDOR where cnpj = '"+fo.getCnpj()+"'";
