@@ -6,6 +6,7 @@
 package padroes;
 
 
+import cci.Controlador;
 import cdp.Fornecedor;
 import cdp.Objeto;
 import cgd.Dao;
@@ -13,8 +14,6 @@ import cgd.DaoFornecedor;
 import cgd.Persistencia;
 import cgt.ControlarFornecedor;
 import cgt.InterfaceControlar;
-import com.sistex.cci.Controlador;
-import javax.persistence.Persistence;
 import javax.servlet.http.HttpServlet;
 
 

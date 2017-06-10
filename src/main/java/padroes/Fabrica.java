@@ -5,11 +5,12 @@
  */
 package padroes;
 
+import cci.Controlador;
 import cdp.Objeto;
 import cgd.Dao;
 import cgd.Persistencia;
 import cgt.InterfaceControlar;
-import com.sistex.cci.Controlador;
+
 
 
 import javax.servlet.http.HttpServlet;
