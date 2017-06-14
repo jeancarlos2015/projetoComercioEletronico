@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TelaControleProdutos extends TelaAbstract{
     
-    
+  
+  @Override
   public void montahead(PrintWriter pw, String titulo){
         pw.println(" <head>");
         pw.println(" <meta charset='utf-8'>");
@@ -40,8 +41,8 @@ public class TelaControleProdutos extends TelaAbstract{
   public void montabody(PrintWriter pw, String titulo){
         pw.println("<body>");
         montamenu(pw);
-        montacampos(pw,titulo);
-        montaTabela(pw);
+        montacampos(pw,titulo,"controle");
+        montaTabela(pw,titulo);
         montarodape(pw);
         pw.println("</body>");
   }
@@ -54,28 +55,35 @@ public class TelaControleProdutos extends TelaAbstract{
         pw.println("<nav class='menu' id='close1'>");
         pw.println("<a class='btn-close'><i class='fa fa-times'></i></a>");
         pw.println("<ul>");
-        criaItemMenu(pw, "home", "index.jsp", "Produtos");
         criaItemMenu(pw, "home", "acesso.jsp", "Logout");
         pw.println("</ul>");
         pw.println("</nav>");
         pw.println("</header>");
   }
   @Override
-  public void montacampos(PrintWriter pw, String titulo){
+  public void montacampos(PrintWriter pw, String titulo, String tipo){
       pw.println("<section class='newsletter container bg-grey'>");
         pw.println("<h1 class='bg-titulo'>"+titulo+"</h1>");
         pw.println("<form method='post' action='Controlador'>");
-        criaCampoOculto(pw, "sistema", "1");
-        criaCampo(pw, "nome", "Nome do produto");
-        criaCampo(pw, "descricao", "Descricao do produto");
-        criaCampo(pw, "preco", "Preco do produto");
-        criaCampo(pw, "marca", "Marca do produto");
-        criaCampoSenha(pw, "quantidade", "Quantidade");
+        criaCampoOculto(pw, "codigo_produto", "1");
+        criaCampo(pw, "codigo_produto", "Codigo do produto","bg-white radius campo");
+        criaCampo(pw, "cnpj", "CNPJ Do Fornecedor","bg-white radius campo");
+        criaCampo(pw, "matricula", "Matricula do funcionario","bg-white radius campo");
+        criaCampo(pw, "nome", "Nome do produto","bg-white radius campo");
+        criaCampo(pw, "descricao", "Descricao do produto","bg-white radius campo");
+        criaCampo(pw, "preco", "Preco do produto","bg-white radius campo");
+        criaCampo(pw, "marca", "Marca do produto","bg-white radius campo");
+        criaCampo(pw, "marca", "Marca Do Produto","bg-white radius campo");
+        criaCampo(pw, "quantidade", "Quantidade do Produto","bg-white radius campo");
         criaCampoOculto(pw, "tipo", "produto");
-        criaCampoOculto(pw, "operacao", "cadastro");
-        criaBotao(pw, "Cadastrar Clientes");
+        criaCampoOculto(pw, "operacao", tipo);
+        criaBotao(pw, "Cadastrar Produto","bg-white radius campo");
         pw.println("</form>");
         pw.println("</section>");
+  }
+  
+  public void montaMenuProdutos(){
+      
   }
   @Override
     public void montapagina(HttpServletResponse response){
@@ -89,7 +97,7 @@ public class TelaControleProdutos extends TelaAbstract{
             montarodape(pw);
             pw.println("</html>");
         } catch (IOException ex) {
-            
+           
         } finally {
             pw.close();
         }
