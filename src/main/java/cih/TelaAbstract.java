@@ -18,7 +18,7 @@ public abstract class TelaAbstract {
       
       public void montahead(PrintWriter pw, String titulo){
         
-    }
+      }
     
       public void montaTabela(PrintWriter pw){
           
@@ -56,10 +56,15 @@ public abstract class TelaAbstract {
     }
     
     public void montapagina(HttpServletResponse response){}
-    
     public void montamenu(PrintWriter pw) {}
     public void montacampos(PrintWriter pw, String titulo){}
     public void montabody(PrintWriter pw, String titulo){}
-      
+    
+    public void montapagina(){
+        System.out.println("teste");
+    }
+    public void montamenu() {}
+    public void montacampos(String titulo){}
+    public void montabody(String titulo){}
       
 }

@@ -5,47 +5,51 @@
  */
 package cgd;
 
-import cdp.Fornecedor;
 import cdp.Objeto;
 import cdp.Pedido;
 import java.util.ArrayList;
 import java.util.List;
+import padroes.Fabrica;
+import padroes.Tipo;
 
 /**
  *
  * @author jean
  */
 public class DaoPedido  implements Dao{
-    private Persistencia conexao;
-    private Pedido p;
+    private final Fabrica fabrica = Fabrica.make(Tipo.pedido);
+    private final Persistencia conexao;
+    
+    public DaoPedido(){
+        conexao = fabrica.criaPersistencia();
+    }
     @Override
     public List<Objeto> listar() {
-        String comando=" SELECT *FROM PEDIDO";
+         String comando=" SELECT *FROM PEDIDO";
          String result = conexao.executarSelecao(comando);
          String[] res = result.split(";");
          List<Objeto> list = new ArrayList<>();
          for(String str:res){
              String[] item  = str.split(",");
-             Fornecedor f = new Fornecedor();
-             f.setCnpj(item[0].trim());
-             f.setNome(item[1]);
-             f.setEndereco(item[2]);
-             list.add(f);
+             Pedido p = (Pedido) fabrica.criaObjeto();
+             p.setCodigo(item[0].trim());
+             p.setData(item[1]);
+             list.add(p);
          }
          return list;
     }
 
     @Override
     public boolean cadastrar(Objeto objeto) {
-        p = (Pedido) objeto;
-        String comando = "INSERT INTO PEDIDO(codigo_pedido, cnpj, data_produto, valor_total) VALUES('"+p.getCodigo()+"','"+p.getCnpj()+"','"+p.getData()+"',"+p.getValor_total()+")";    
+        Pedido p = (Pedido) objeto;
+        String comando = "INSERT INTO PEDIDO(codigo_pedido, data_pedido) VALUES('"+p.getCodigo()+"','"+p.getData()+")";    
         return conexao.executar(comando);
     }
 
     @Override
     public boolean excluir(Objeto objeto) {
-        p = (Pedido) objeto;
-        String comando = "DELETE FROM PEDIDO WHERE cnpj='"+p.getCnpj()+"'";
+        Pedido p = (Pedido) objeto;
+        String comando = "DELETE FROM PEDIDO WHERE codigo_pedido='"+p.getCodigo()+"'";
         return conexao.executar(comando);
     }
 
@@ -54,7 +58,16 @@ public class DaoPedido  implements Dao{
 
     @Override
     public boolean existe(Objeto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pedido p = (Pedido) objeto;
+         String comando=" SELECT *FROM PEDIDO where codigo_pedido = "+p.getCodigo();
+         String result = conexao.executarSelecao(comando);
+         String[] res = result.split(";");
+         List<Objeto> list = new ArrayList<>();
+         for(String str:res){
+             String[] item  = str.split(",");
+             
+         }
+         return false;
     }
 
     

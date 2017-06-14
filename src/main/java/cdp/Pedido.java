@@ -1,7 +1,6 @@
 package cdp;
 
 
-import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,6 @@ public class Pedido extends ObjetoAbstract{
     private String codigo="";
     private String data="";
     private List<Produto> itens=null;
-    private String cnpj;
-    private float valor_total;
     public Pedido(){
         itens = new ArrayList<>();
     }
@@ -61,41 +58,14 @@ public class Pedido extends ObjetoAbstract{
 
     @Override
     public String[] getAtributos() {
-        
-        String vetor[] = {"codigo_pedido","cnpj","data_produto","valor_total"};
+        String vetor[] = {"codigo_pedido","data_pedido"};
         return vetor;
-      
-        
     }
-
-    /**
-     * @return the cnpj
-     */
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    /**
-     * @param cnpj the cnpj to set
-     */
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    /**
-     * @return the valor_total
-     */
-    public float getValor_total() {
-        return valor_total;
-    }
-
-    /**
-     * @param valor_total the valor_total to set
-     */
-    public void setValor_total(float valor_total) {
-        this.valor_total = valor_total;
+    @Override
+    public String toString(){
+        return codigo+" "+" "+data;
     }
     
-    
+   
     
 }

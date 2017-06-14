@@ -6,8 +6,6 @@
 package cgt;
 
 
-import cdp.Objeto;
-import java.util.List;
 import padroes.Fabrica;
 import static padroes.Tipo.produto;
 

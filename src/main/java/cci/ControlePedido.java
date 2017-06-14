@@ -11,7 +11,8 @@ import cdp.Pedido;
 import cgt.InterfaceControlar;
 import cih.TelaAbstract;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +42,7 @@ public class ControlePedido extends HttpServlet {
             if(TelaAbstract.valida(request, item.getAtributos())){
                 api = fabrica.criaApi();
                 item = getItem(request);
-                if(api.cadastrar(item)){
-                    
-                }
+                api.cadastrar(item);
             }
         } 
     }
@@ -73,8 +72,11 @@ public class ControlePedido extends HttpServlet {
     
     public Objeto getItem(HttpServletRequest request) {
         Pedido item = (Pedido) fabrica.criaObjeto();
-        item.setCodigo(request.getParameter("codigo"));
         
+        List<String> pratos = new ArrayList();
+        for(int numero=1;numero<6;numero++){
+            pratos.add(request.getParameter("tipo"+numero));
+        }
         return item;
     }
 }

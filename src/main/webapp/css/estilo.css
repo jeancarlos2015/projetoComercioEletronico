@@ -4,6 +4,14 @@
     width: 50%;
     margin-left: 1%;
 }
+.campos{
+    margin-bottom: 5%;
+}
+
+span input{
+    margin-left: 1%;
+    width: 200px;
+}
 
 .oculto{
     display: none;

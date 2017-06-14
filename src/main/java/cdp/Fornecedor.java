@@ -13,7 +13,8 @@ public class Fornecedor extends ObjetoAbstract{
     private String nome;
     private String cnpj;
     private String endereco;
-
+    private String email;
+    private String telefone;
     /**
      * @return the nome
      */
@@ -58,8 +59,41 @@ public class Fornecedor extends ObjetoAbstract{
 
     @Override
     public String[] getAtributos() {
-        String vetor[] = {"cnpj","nome","endereco","email"};
+        String vetor[] = {"cnpj","nome","endereco","email","telefone"};
         return vetor;
+    }
+    
+    @Override
+    public String toString(){
+        return nome+" "+cnpj+" "+endereco+" "+email;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the telefone
+     */
+    public String getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
     
 }

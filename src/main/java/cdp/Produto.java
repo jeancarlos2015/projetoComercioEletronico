@@ -100,11 +100,14 @@ public class Produto extends ObjetoAbstract{
 
     @Override
     public String[] getAtributos() {
-        String vetor[] = {"codigo_produto","codigo_pedido","cnpj","descricao",
-                           "nome","marca","quantidade_unit","quantidade_estoq","preco"};
+        String vetor[] = {"codigo_produto","cnpj","descricao",
+                           "nome","quantidade_unit","quantidade_estoq","marca","preco"};
         return vetor;
     }
-
+    @Override
+    public String toString(){
+        return codigo_produto+" "+codigo_pedido+" "+cnpj+" "+descricao+" "+nome+" "+marca+" "+quantidade_unit+" "+quantidade_estoq+" "+preco;
+    }
     /**
      * @return the codigo_produto
      */
