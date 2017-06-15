@@ -42,9 +42,7 @@ public class ControleProduto extends HttpServlet {
             if(TelaAbstract.valida(request, item.getAtributos())){
                 api = fabrica.criaApi();
                 item = getItem(request);
-                if(api.cadastrar(item)){
-                    
-                }
+                api.cadastrar(item);
             }
         } 
     }
@@ -75,14 +73,13 @@ public class ControleProduto extends HttpServlet {
     
     public Objeto getItem(HttpServletRequest request) {
         Produto item = (Produto) fabrica.criaObjeto();
-        
+        item.setCodigo_produto("codigo");
         item.setNome(request.getParameter("nome"));
         item.setDescricao(request.getParameter("descricao"));
         item.setPreco(request.getParameter("preco"));
         item.setMarca(request.getParameter("marca"));
-        
-        
-        
+        item.setQuantidade_unit(request.getParameter("quantidade_unitaria"));
+        item.setQuantidade_estoq(request.getParameter("quantidade_estoque"));
         return item;
     }
 }

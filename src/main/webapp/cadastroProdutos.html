@@ -32,17 +32,25 @@
             <span class="campo" id="basic-addon1" >Codigo</span>
             <input id="codigo" type="text" class="campo" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
             
+            <span class="campo" id="basic-addon1" >Nome</span>
+            <input id="codigo" type="text" class="campo" name="nome"  placeholder="Fulano" required="required" aria-describedby="basic-addon1">
+            
             <span class="campo" id="basic-addon1" >Descrição</span>
             <input id="descricao" type="text" class="campo" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
             
             <span class="campo" id="basic-addon1">Marca</span>
             <input id="marca" type="text" class="campo" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
                 
-            <span class="campo" id="basic-addon1">Quantidade</span>
-            <input id="quantidade" type="text" class="campo" name="quantidade"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            <span class="campo" id="basic-addon1">Quantidade Unitaria</span>
+            <input id="quantidade" type="text" class="campo" name="quantidade_unitaria"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            
+            <span class="campo" id="basic-addon1">Quantidade Estoque</span>
+            <input id="quantidade" type="text" class="campo" name="quantidade_estoque"  placeholder="0" required="required" aria-describedby="basic-addon1">
             
             <input  type="text" class="oculto" name="tipo" value="produto">
+            
             <input  type="text" class="oculto" name="operacao" value="cadastro">
+            
             <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
 
         </form>

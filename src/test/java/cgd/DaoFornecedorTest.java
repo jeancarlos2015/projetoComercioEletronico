@@ -17,46 +17,68 @@ import static padroes.Tipo.fornecedor;
  * @author jean
  */
 public class DaoFornecedorTest {
-    private Fabrica f = Fabrica.make(fornecedor);
-    public DaoFornecedorTest() {
-    }
-
-    /**
-     * Test of listar method, of class DaoFornecedor.
-     */
+    private final Fabrica fabrica = Fabrica.make(fornecedor);
+    private final Dao dao = fabrica.criaDao();
+  
     @Test
     public void testListar() {
-        Dao dao = f.criaDao();
         for(Objeto objeto: dao.listar()){
             System.out.println(objeto.toString());
         }
     }
     @Test
+    public void testBuscar(){
+        Fornecedor objeto = (Fornecedor) fabrica.criaObjeto();
+        objeto.setCnpj("2");
+        Fornecedor resultado = (Fornecedor) dao.buscar(objeto);
+        assertEquals(objeto.getCnpj(), resultado.getCnpj());
+    }
+    @Test
     public void testExiste(){
-        Dao dao = f.criaDao();
-        Fornecedor fornecedor = (Fornecedor) f.criaObjeto();
-        fornecedor.setCnpj("12341234124");
+        Fornecedor fornecedor = (Fornecedor) fabrica.criaObjeto();
+        fornecedor.setCnpj("1");
         assertTrue(dao.existe(fornecedor));
     }
-    /**
-     * Test of inserir method, of class DaoFornecedor.
-     */
-    @Test
-    public void testInserir() {
-    }
+   
 
     /**
-     * Test of deletar method, of class DaoFornecedor.
+     * Test of cadastrar method, of class DaoFornecedor.
      */
     @Test
-    public void testDeletar() {
+    public void testCadastrar() {
+        Fornecedor fornecedor = (Fornecedor) fabrica.criaObjeto();
+        fornecedor.setEmail("teste@gmail.com");
+        fornecedor.setEndereco("Rua teste");
+        fornecedor.setNome("Teste");
+        fornecedor.setTelefone("33413212");
+        for(int indice=3;indice<100;indice++){
+            fornecedor.setCnpj(""+indice);
+            if(!dao.existe(fornecedor)){
+                dao.cadastrar(fornecedor);
+                break;
+            }
+        }
     }
+    
 
     /**
-     * Test of set method, of class DaoFornecedor.
+     * Test of excluir method, of class DaoFornecedor.
      */
     @Test
-    public void testSet() {
+    public void testExcluir() {
+        Fornecedor fornecedor = (Fornecedor) fabrica.criaObjeto();
+        fornecedor.setEmail("teste@gmail.com");
+        fornecedor.setEndereco("Rua teste");
+        fornecedor.setNome("Teste");
+        fornecedor.setTelefone("33413212");
+        for(int indice=3;indice<100;indice++){
+            fornecedor.setCnpj(""+indice);
+            if(dao.existe(fornecedor)){
+                dao.excluir(fornecedor);
+            }else{
+                break;
+            }
+        }
     }
     
 }

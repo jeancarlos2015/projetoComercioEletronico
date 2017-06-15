@@ -7,6 +7,7 @@ package padroes;
 
 
 import cci.Controlador;
+import cci.ControladorFornecedor;
 import cdp.Fornecedor;
 import cdp.Objeto;
 import cgd.Dao;
@@ -29,10 +30,7 @@ public class FabricaFornecedor extends Fabrica{
     public Dao criaDao(){return new DaoFornecedor();}
     
     @Override
-    public Persistencia criaPersistencia(){return new Persistencia();}
-    
-    @Override
-    public HttpServlet criaControle(){return new Controlador();}
+    public HttpServlet criaControle(){return new ControladorFornecedor();}
     
     @Override
     public InterfaceControlar criaApi(){return new ControlarFornecedor();}

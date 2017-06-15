@@ -9,12 +9,17 @@ package cdp;
  *
  * @author jean
  */
-public class Fornecedor extends ObjetoAbstract{
+public class Fornecedor extends Objeto{
     private String nome;
     private String cnpj;
     private String endereco;
     private String email;
     private String telefone;
+
+    public Fornecedor() {
+        super("fornecedor");
+    }
+    
     /**
      * @return the nome
      */
@@ -40,7 +45,7 @@ public class Fornecedor extends ObjetoAbstract{
      * @param cnpj the cnpj to set
      */
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+        this.cnpj = cnpj.trim();
     }
 
     /**
@@ -93,7 +98,8 @@ public class Fornecedor extends ObjetoAbstract{
      * @param telefone the telefone to set
      */
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.telefone = telefone.trim();
     }
+    
     
 }

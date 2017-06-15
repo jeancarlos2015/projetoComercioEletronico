@@ -11,7 +11,6 @@ import cdp.Objeto;
 import cdp.Produto;
 import cgd.Dao;
 import cgd.DaoProduto;
-import cgd.Persistencia;
 import cgt.ControlarProdutos;
 import cgt.InterfaceControlar;
 import javax.servlet.http.HttpServlet;
@@ -27,9 +26,6 @@ public class FabricaProduto extends Fabrica{
     
     @Override
     public Dao criaDao(){return new DaoProduto();}
-    
-    @Override
-    public Persistencia criaPersistencia(){return new Persistencia();}
     
     @Override
     public HttpServlet criaControle(){return new ControleProduto();}

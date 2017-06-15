@@ -5,7 +5,11 @@
  */
 package cgd;
 
-import cdp.Fornecedor;
+
+import cdp.Objeto;
+import cdp.Produto;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 
 /**
@@ -33,12 +37,26 @@ public class ConexaoBancoTest {
     @Test
     public void testExecutarSelecao() {
          Persistencia conexao = new Persistencia();
-         Fornecedor fo = new Fornecedor();
-         fo.setCnpj("123412341234");
-         String comando=" SELECT cnpj FROM FORNECEDOR where cnpj = '"+fo.getCnpj()+"'";
+         String comando=" SELECT *FROM PRODUTO";
          String[] result = conexao.executarSelecao(comando).split(";");
+         List<Objeto> lista = new ArrayList();
          for(String res:result){
              System.out.println(res);
+             String[] dado = res.split(",");
+             Produto p = new Produto();
+             p.setCodigo_produto(dado[0]);
+             p.setCnpj(dado[1]);
+             p.setDescricao(dado[2]);
+             p.setNome(dado[3]);
+             p.setQuantidade_unit(dado[4]);
+             p.setQuantidade_estoq(dado[5]);
+             p.setMarca(dado[6]);
+             p.setPreco(dado[7]);
+             lista.add(p);
+         }
+         
+         for(Objeto o:lista){
+             System.out.println(o.toString());
          }
     }
     

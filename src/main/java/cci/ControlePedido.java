@@ -8,6 +8,7 @@ package cci;
 
 import cdp.Objeto;
 import cdp.Pedido;
+import cdp.Produto;
 import cgt.InterfaceControlar;
 import cih.TelaAbstract;
 import java.io.IOException;
@@ -31,12 +32,11 @@ public class ControlePedido extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            cadastrar(request, response);
-            excluir(request, response);
-            listar(request, response);
+        
+            cadastrar(request);
     }
     
-    public void cadastrar(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void cadastrar(HttpServletRequest request) throws IOException{
         if(request.getParameter("operacao").equals("cadastro")){
             Objeto item = fabrica.criaObjeto();
             if(TelaAbstract.valida(request, item.getAtributos())){
@@ -72,10 +72,12 @@ public class ControlePedido extends HttpServlet {
     
     public Objeto getItem(HttpServletRequest request) {
         Pedido item = (Pedido) fabrica.criaObjeto();
-        
-        List<String> pratos = new ArrayList();
+        List<Produto> produtos = new ArrayList();
+        String numero_pedido = request.getParameter("numero_pedido");
+        String data_pedido = request.getParameter("data_pedido");
         for(int numero=1;numero<6;numero++){
-            pratos.add(request.getParameter("tipo"+numero));
+            String codigo = request.getParameter("tipo"+numero);
+            
         }
         return item;
     }

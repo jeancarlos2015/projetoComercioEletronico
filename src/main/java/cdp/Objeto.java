@@ -9,7 +9,13 @@ package cdp;
  *
  * @author jean
  */
-public interface Objeto {
-    public String[] getAtributos();
-    
+public abstract class Objeto {
+    private String tipo;
+    public Objeto(String tipo){
+        this.tipo = tipo;
+    }
+    public String getTipo(){
+        return tipo;
+    }
+    public abstract String[] getAtributos();
 }

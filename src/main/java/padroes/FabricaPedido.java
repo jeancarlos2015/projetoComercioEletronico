@@ -29,9 +29,6 @@ public class FabricaPedido extends Fabrica{
     @Override
     public Dao criaDao(){return new DaoPedido();}
     
-   @Override
-    public Persistencia criaPersistencia(){return new Persistencia();}
-    
     @Override
     public HttpServlet criaControle(){return new ControlePedido();}
     

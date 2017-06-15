@@ -14,7 +14,9 @@ import java.util.List;
  */
 public interface Dao {
     public List<Objeto> listar();
+    public List<Objeto> listar(Objeto objeto);
     public boolean cadastrar(Objeto objeto);
     public boolean excluir(Objeto objeto);
     public boolean existe(Objeto objeto);
+    public Objeto buscar(Objeto objeto);
 }

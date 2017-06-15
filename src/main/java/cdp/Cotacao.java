@@ -12,9 +12,8 @@ package cdp;
 public class Cotacao{
 
     private Fornecedor fornecedor;
-    private Vendedor vendedor;
-    private String forma_pagamento_a;
-    private String forma_pagamento_b;
+    private String forma_pagamento_a="A vista";
+    private String forma_pagamento_b="3x Sem juros";
     private String vencimento;
     private Pedido pedido;
 
@@ -78,9 +77,7 @@ public class Cotacao{
     /**
      * @return the pedido
      */
-    public Pedido getPedido() {
-        return pedido;
-    }
+    
 
     /**
      * @param pedido the pedido to set
@@ -89,36 +86,49 @@ public class Cotacao{
         this.pedido = pedido;
     }
 
-    /**
-     * @return the vendedor
-     */
-    public Vendedor getVendedor() {
-        return vendedor;
+  
+    
+    
+    public String getNomeFornecedor(){
+        return fornecedor.getNome();
     }
+    public String getCnpjFornecedor(){
+        return fornecedor.getCnpj();
+    }
+    public String getEmailFornecedor(){
+        return fornecedor.getEmail();
+    }
+    public String getEnderecoFornecedor(){
+        return fornecedor.getEndereco();
+    }
+    public String getTelefoneFornecedor(){
+        return fornecedor.getTelefone();
+    }
+    
+    
+    
+    public String getDataPedido(){
+        return pedido.getData();
+    }
+    
+    public String getCodigoPedido(){
+        return pedido.getCodigo_pedido();
+    }
+    
+    public float getValor_total(){
+        return pedido.getValor_total();
+    }
+    
+        
 
-    /**
-     * @param vendedor the vendedor to set
-     */
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
 
     public String getNumero() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pedido.getCodigo_pedido();
     }
 
-    public String getValor_total() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
-    public String getValor_total1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getValor_total2() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     public String getFormaPagamento1() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -129,6 +139,10 @@ public class Cotacao{
 
     public String getValidadeProposta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void processa() {
+        
     }
     
 }

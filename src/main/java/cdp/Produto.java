@@ -9,17 +9,20 @@ package cdp;
  *
  * @author jean
  */
-public class Produto extends ObjetoAbstract{
-    private String codigo_produto;
-    private String codigo_pedido;
-    private String cnpj;
-    
-    private String descricao;
-    private String nome;
-    private int quantidade_unit;
-    private int quantidade_estoq;
-    private String marca;
-    private String preco;
+public class Produto extends Objeto{
+    private String codigo_produto="";
+    private String cnpj="";
+    private String descricao="";
+    private String nome="";
+    private int quantidade_unit=0;
+    private int quantidade_estoq=0;
+    private String marca="";
+    private float preco=0;
+    private String tipo="";
+
+    public Produto() {
+        super("produto");
+    }
 
     /**
      * @return the descricao
@@ -106,7 +109,7 @@ public class Produto extends ObjetoAbstract{
     }
     @Override
     public String toString(){
-        return codigo_produto+" "+codigo_pedido+" "+cnpj+" "+descricao+" "+nome+" "+marca+" "+quantidade_unit+" "+quantidade_estoq+" "+preco;
+        return codigo_produto+" "+cnpj+" "+descricao+" "+nome+" "+marca+" "+quantidade_unit+" "+quantidade_estoq+" "+preco;
     }
     /**
      * @return the codigo_produto
@@ -122,20 +125,7 @@ public class Produto extends ObjetoAbstract{
         this.codigo_produto = codigo_produto.trim();
     }
 
-    /**
-     * @return the codigo_pedido
-     */
-    public String getCodigo_pedido() {
-        return codigo_pedido;
-    }
-
-    /**
-     * @param codigo_pedido the codigo_pedido to set
-     */
-    public void setCodigo_pedido(String codigo_pedido) {
-        this.codigo_pedido = codigo_pedido.trim();
-    }
-
+    
     /**
      * @return the cnpj
      */
@@ -153,7 +143,7 @@ public class Produto extends ObjetoAbstract{
     /**
      * @return the preco
      */
-    public String getPreco() {
+    public float getPreco() {
         return preco;
     }
 
@@ -161,7 +151,21 @@ public class Produto extends ObjetoAbstract{
      * @param preco the preco to set
      */
     public void setPreco(String preco) {
-        this.preco = preco.trim();
+        this.preco = Float.parseFloat(preco.trim());
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     

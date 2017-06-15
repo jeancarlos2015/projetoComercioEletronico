@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
  *
  * @author jean
  */
-public class Fabrica {
+public abstract class Fabrica {
     public static Fabrica make(Tipo tipo){
         switch(tipo){
             case fornecedor:
@@ -30,7 +30,7 @@ public class Fabrica {
             case pedido:
                 return new FabricaPedido();
             default:
-                return new Fabrica();
+                return null;
         }
     }
     public static Fabrica make(String tipo){
@@ -42,12 +42,12 @@ public class Fabrica {
             case "pedido":
                 return new FabricaPedido();
             default:
-                return new Fabrica();
+                return null;
         }
     }
-    public Objeto criaObjeto(){return null;}
-    public Dao criaDao(){return null;}
+    public abstract Objeto criaObjeto();
+    public abstract Dao criaDao();
     public Persistencia criaPersistencia(){return new Persistencia();}
-    public HttpServlet criaControle(){return new Controlador();}
-    public InterfaceControlar criaApi(){return null;}
+    public abstract HttpServlet criaControle();
+    public abstract InterfaceControlar criaApi();
 }

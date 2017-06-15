@@ -14,11 +14,13 @@ import java.util.List;
  *
  * @author jean
  */
-public class Pedido extends ObjetoAbstract{
-    private String codigo="";
+public class Pedido extends Objeto{
+    private String codigo_pedido="";
+    private String codigo_produto="";
     private String data="";
     private List<Produto> itens=null;
     public Pedido(){
+        super("pedido");
         itens = new ArrayList<>();
     }
     public boolean adicionaItem(Produto item){
@@ -29,17 +31,17 @@ public class Pedido extends ObjetoAbstract{
         return itens;
     }
     /**
-     * @return the codigo
+     * @return the codigo_pedido
      */
-    public String getCodigo() {
-        return codigo;
+    public String getCodigo_pedido() {
+        return codigo_pedido;
     }
 
     /**
-     * @param codigo the codigo to set
+     * @param codigo_pedido the codigo_pedido to set
      */
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo_pedido(String codigo_pedido) {
+        this.codigo_pedido = codigo_pedido.trim();
     }
 
     /**
@@ -53,19 +55,41 @@ public class Pedido extends ObjetoAbstract{
      * @param data the data to set
      */
     public void setData(String data) {
-        this.data = data;
+        this.data = data.trim();
     }
 
     @Override
     public String[] getAtributos() {
-        String vetor[] = {"codigo_pedido","data_pedido"};
+        String vetor[] = {"codigo_pedido","codigo_produto","data_pedido"};
         return vetor;
+    }
+    
+    public float getValor_total(){
+        float valor=0;
+        for(Produto p:itens){
+            valor+=p.getPreco();
+        }
+        
+        return valor;
     }
     @Override
     public String toString(){
-        return codigo+" "+" "+data;
+        return codigo_pedido+" "+codigo_produto+" "+data+" "+itens.toString();
     }
-    
-   
+
+    /**
+     * @return the codigo_produto
+     */
+    public String getCodigo_produto() {
+        return codigo_produto;
+    }
+
+    /**
+     * @param codigo_produto the codigo_produto to set
+     */
+    public void setCodigo_produto(String codigo_produto) {
+        this.codigo_produto = codigo_produto.trim();
+    }
+
     
 }

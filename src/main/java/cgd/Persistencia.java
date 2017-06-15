@@ -138,15 +138,15 @@ public class Persistencia {
             rs = stm.executeQuery(comando1);
             String result="";
             List<String> itens = obterColunas(comando1);
-            int index;
+            
             while(rs.next()){
                 if(itens.size()==1){
                     result+=rs.getString(itens.get(0))+";";
                 }else{
-                    for(index=0;index<itens.size()-1;index++){
-                        result +=rs.getString(itens.get(index))+",";
+                    for(String dado:itens){
+                        result +=rs.getString(dado)+",";
                     }
-                    result+=rs.getString(itens.get(index))+";";
+                    result+=";";
                 }
             }    
             rs.close();
