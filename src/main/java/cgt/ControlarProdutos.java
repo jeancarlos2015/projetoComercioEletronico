@@ -23,7 +23,8 @@ public class ControlarProdutos extends Controlar{
 @Override
     public boolean cadastrar(Objeto item) {
         Produto produto = (Produto) item;
-        produto.setCodigo_produto(""+(dao.maiorCodigo()+1));
+        int codigo = dao.maiorCodigo()+1;
+        produto.setCodigo_produto(""+codigo);
         return dao.cadastrar(produto);   
     }
     

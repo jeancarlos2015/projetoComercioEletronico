@@ -107,7 +107,7 @@ public class Produto extends Objeto{
     }
     @Override
     public String toString(){
-        return codigo_produto+" "+cnpj+" "+descricao+" "+nome+" "+marca+" "+quantidade_unit+" "+quantidade_estoq+" "+preco;
+        return codigo_produto+" "+cnpj+" "+descricao+" "+nome+" "+marca+" "+quantidade_unit+" "+quantidade_estoq+" "+preco+" "+tipoProduto;
     }
     /**
      * @return the codigo_produto
@@ -155,6 +155,7 @@ public class Produto extends Objeto{
     /**
      * @return the tipoProduto
      */
+    @Override
     public String getTipoProduto() {
         return tipoProduto;
     }

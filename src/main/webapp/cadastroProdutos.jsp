@@ -37,33 +37,36 @@
 
         <form method="post" action="Controlador">
             <span class="campo" id="basic-addon1" >Nome</span>
-            <input id="codigo" type="text" class="campo" name="nome"  placeholder="Fulano" required="required" aria-describedby="basic-addon1">
+            <input id="codigo" type="text" class="campo" name="nome"  placeholder="Fulano" required="required" aria-describedby="basic-addon1" value="Feijao">
 
             <span class="campo" id="basic-addon1" >Descrição</span>
-            <input id="descricao" type="text" class="campo" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
+            <input id="descricao" type="text" class="campo" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1" value="Feijao Tropeiro">
 
             <span class="campo" id="basic-addon1">Marca</span>
-            <input id="marca" type="text" class="campo" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
+            <input id="marca" type="text" class="campo" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1" value="Rio doce">
 
             <span class="campo" id="basic-addon1">Quantidade Unitaria</span>
-            <input id="quantidade" type="text" class="campo" name="quantidade_unitaria"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            <input id="quantidade" type="text" class="campo" name="quantidade_unitaria"  placeholder="0" required="required" aria-describedby="basic-addon1" value="20">
 
             <span class="campo" id="basic-addon1">Quantidade Estoque</span>
-            <input id="quantidade" type="text" class="campo" name="quantidade_estoque"  placeholder="0" required="required" aria-describedby="basic-addon1">
+            <input id="quantidade" type="text" class="campo" name="quantidade_estoque"  placeholder="0" required="required" aria-describedby="basic-addon1" value="30">
+            
+            <span class="campo" id="basic-addon1">Preço</span>
+            <input id="quantidade" type="text" class="campo" name="preco"  placeholder="0" required="required" aria-describedby="basic-addon1" value="20">
 
             <input  type="text" class="oculto" name="tipo" value="produto">
 
             <input  type="text" class="oculto" name="operacao" value="cadastro">
 
             <div class="opcoes  radio">
-                <label><input type="radio" name="optradio" value="tropeiro">Tropeiro</label>
+                <label><input type="radio" name="optradio" value="tropeiro" checked="">Tropeiro</label>
                 <label><input type="radio" name="optradio" value="salada">Salada</label>
                 <label><input type="radio" name="optradio" value="prato">Prato</label>
                 <label><input type="radio" name="optradio" value="espaguete">Espaguete</label>
                 <label><input type="radio" name="optradio" value="refrigerante">Refrigerante</label>
             </div>
             <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
-
+            
             <div class="alert">
                 <h3 class="mensagem">${mensagem}</h3>
             </div>

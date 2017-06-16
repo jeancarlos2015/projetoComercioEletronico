@@ -10,6 +10,7 @@ import cdp.Produto;
 import cgt.InterfaceControlar;
 import cih.Tela;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import padroes.Fabrica;
-import padroes.Tipo;
+import static padroes.Tipo.produto;
 
 /**
  *
@@ -26,20 +27,19 @@ import padroes.Tipo;
 @WebServlet(name = "CadastroProduto", urlPatterns = {"/CadastroProduto"})
 public class ControleProduto extends HttpServlet {
 
-    private final Fabrica fabrica = Fabrica.make(Tipo.produto);
-    private InterfaceControlar api;
+    private Fabrica fabrica = Fabrica.make(produto);
+    private InterfaceControlar api = fabrica.criaApi();
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         cadastrar(request, response);
     }
 
     public void cadastrar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("operacao").equals("cadastro")) {
-            Objeto item = fabrica.criaObjeto();
-            api = fabrica.criaApi();
-            item = getItem(request);
+            Objeto item = getItem(request);
             api.cadastrar(item);
             request.setAttribute("mensagem", "Produto Cadastrado Com sucesso");
             RequestDispatcher rd = request.getRequestDispatcher("/cadastroProdutos.jsp");
@@ -71,14 +71,20 @@ public class ControleProduto extends HttpServlet {
     }
 
     public Objeto getItem(HttpServletRequest request) {
-        Produto item = (Produto) fabrica.criaObjeto();
-        item.setNome(request.getParameter("nome"));
-        item.setDescricao(request.getParameter("descricao"));
-        item.setPreco(request.getParameter("preco"));
-        item.setMarca(request.getParameter("marca"));
-        item.setQuantidade_unit(request.getParameter("quantidade_unitaria"));
-        item.setQuantidade_estoq(request.getParameter("quantidade_estoque"));
-        item.setTipoProduto(request.getParameter("optradio"));
-        return item;
+        
+            Produto item = (Produto) fabrica.criaObjeto();
+            item.setNome(request.getParameter("nome"));
+            item.setDescricao(request.getParameter("descricao"));
+            item.setPreco(request.getParameter("preco"));
+            item.setMarca(request.getParameter("marca"));
+            item.setQuantidade_unit(request.getParameter("quantidade_unitaria"));
+            item.setQuantidade_estoq(request.getParameter("quantidade_estoque"));
+            item.setTipoProduto(request.getParameter("optradio"));
+            return item;
+    }
+    
+    public void testa(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        PrintWriter pw = response.getWriter();
+//        pw.println(request.setAttribute("", pw))
     }
 }

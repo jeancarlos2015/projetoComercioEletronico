@@ -48,7 +48,7 @@ public class DaoProduto implements Dao {
     @Override
     public boolean cadastrar(Objeto objeto) {
         Produto produto = (Produto) objeto;
-        String comando = "INSERT INTO PEDIDO(codigo_produto, cnpj, descricao, nome, marca, quantidade_unit, quantidade_estoq, preco,tipo) VALUES('" + produto.getCodigo_produto() + "','" + produto.getCnpj() + "','" + produto.getDescricao() + "','" + produto.getNome() + "','" + produto.getMarca() + "'," + produto.getQuantidade_unit() + "," + produto.getQuantidade_estoq()+"','"+produto.getTipoProduto()+ "')";
+        String comando = "INSERT INTO PEDIDO(codigo_produto, cnpj, descricao, nome, marca, quantidade_unit, quantidade_estoq, preco, tipo) VALUES('" + produto.getCodigo_produto() + "','" + produto.getCnpj() + "','" + produto.getDescricao() + "','" + produto.getNome() + "','" + produto.getMarca() + "'," + produto.getQuantidade_unit() + "," + produto.getQuantidade_estoq() +"',"+produto.getPreco()+ ",'" + produto.getTipoProduto() + "')";
         return conexao.executar(comando);
     }
 

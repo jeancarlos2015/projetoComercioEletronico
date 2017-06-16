@@ -36,7 +36,7 @@
             </h1>
         </div>
         <br>
-
+        
         <form method="post" action="Controlador">
             <span class="campo" id="basic-addon1" >CNPJ</span>
             <input type="text" class="campo" name="cnpj"  placeholder="XX.XXX.XXX/YYYY-ZZ" required="required" aria-describedby="basic-addon1">
@@ -56,7 +56,7 @@
             <input  type="text" class="oculto" name="tipo" value="fornecedor">
 
             <input  type="text" class="oculto" name="operacao" value="cadastro">
-
+            
             <button type="submit" class="btn btn-default campo">Cadastrar</button>            
 
             <div class="alert">

@@ -55,4 +55,9 @@ public class DaoProdutoTest {
     public void testExiste() {
     }
     
+    @Test
+    public void testMaiorCodigo(){
+        Dao dao = fabrica.criaDao();
+        System.out.println(dao.maiorCodigo());
+    }
 }
