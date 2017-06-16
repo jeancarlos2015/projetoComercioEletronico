@@ -33,4 +33,6 @@ function verifica() {
     }
 }
 
-
+function  naoexiste(){
+    alert("Este usuario não existe!!!");
+}

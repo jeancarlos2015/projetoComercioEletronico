@@ -6,16 +6,16 @@
 package cgt;
 
 
+import cdp.Cotacao;
 import cdp.Objeto;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author jean
  */
 public interface InterfaceControlar {
-    
+    public Cotacao geraCotacao();
     public boolean cadastrar(Objeto item);
     public boolean excluir(Objeto item);
     public boolean atender(Objeto item);

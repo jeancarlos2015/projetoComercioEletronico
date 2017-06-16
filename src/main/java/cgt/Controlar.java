@@ -6,11 +6,13 @@
 package cgt;
 
 
+import cdp.Cotacao;
 import cdp.Objeto;
 import cgd.Dao;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import padroes.Fabrica;
+import padroes.Tipo;
 
 /**
  *
@@ -21,9 +23,9 @@ public abstract class  Controlar implements InterfaceControlar{
     protected final Fabrica fabrica;
     protected HttpServletRequest request;
     
-    public Controlar(Fabrica f){
-        dao = f.criaDao();
-        fabrica = f;
+    public Controlar(Tipo tipo){
+        fabrica = Fabrica.make(tipo);
+        dao = fabrica.criaDao();
     }
     
     @Override
@@ -51,7 +53,7 @@ public abstract class  Controlar implements InterfaceControlar{
   
     
     
-    
+    public Cotacao geraCotacao(){return null;}
    
     
 }

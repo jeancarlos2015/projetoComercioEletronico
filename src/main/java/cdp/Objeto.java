@@ -14,7 +14,7 @@ public abstract class Objeto {
     public Objeto(String tipo){
         this.tipo = tipo;
     }
-    public String getTipo(){
+    public String getTipoProduto(){
         return tipo;
     }
     public abstract String[] getAtributos();

@@ -49,7 +49,7 @@ public class DaoFornecedor implements Dao {
     @Override
     public boolean cadastrar(Objeto objeto) {
         Fornecedor fornecedor = (Fornecedor) objeto;
-        String comando = "INSERT INTO FORNECEDOR(cnpj, nome, endereco, email) VALUES('" + fornecedor.getCnpj() + "','" + fornecedor.getNome() + "','" + fornecedor.getEndereco() + "','" + fornecedor.getEmail() + "')";
+        String comando = "INSERT INTO FORNECEDOR(cnpj, nome, endereco, email, telefone) VALUES('" + fornecedor.getCnpj() + "','" + fornecedor.getNome() + "','" + fornecedor.getEndereco() + "','" + fornecedor.getEmail()+"','"+fornecedor.getTelefone()+ "')";
         return conexao.executar(comando);
     }
 
@@ -94,7 +94,7 @@ public class DaoFornecedor implements Dao {
 
     @Override
     public List<Objeto> listar(Objeto objeto) {
-        if (objeto.getTipo().equals("produto")) {
+        if (objeto.getTipoProduto().equals("produto")) {
             Produto produto = (Produto) objeto;
             String comando = " SELECT *FROM FORNECEDOR cnpj = '"+produto.getCnpj()+"'";
             String result = conexao.executarSelecao(comando);
@@ -115,6 +115,11 @@ public class DaoFornecedor implements Dao {
         
 
         return null;
+    }
+
+    @Override
+    public int maiorCodigo() {
+        return 0;
     }
 
 }

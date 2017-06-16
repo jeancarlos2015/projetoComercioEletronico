@@ -1,3 +1,11 @@
+<%-- 
+    Document   : cadastroProdutos
+    Created on : 15/06/2017, 19:14:12
+    Author     : jean
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="utf-8">
     <head>
@@ -16,9 +24,9 @@
     <body>
         <nav class="navbar navbar-inverse">
             <ul class="nav nav-pills">
-                <li role="presentation" ><a href="index.html">Pedidos</a></li>
-                <li role="presentation" class="active"><a href="cadastroProdutos.html">Produtos</a></li>
-                <li role="presentation" ><a href="cadastroFornecedor.html">Fornecedor</a></li>
+                <li role="presentation" ><a href="index.jsp">Pedidos</a></li>
+                <li role="presentation" class="active"><a href="cadastroProdutos.jsp">Produtos</a></li>
+                <li role="presentation" ><a href="cadastroFornecedor.jsp">Fornecedor</a></li>
             </ul>
         </nav>
         <div class="jumbotron">
@@ -28,31 +36,37 @@
         </div>
 
         <form method="post" action="Controlador">
-            
-            <span class="campo" id="basic-addon1" >Codigo</span>
-            <input id="codigo" type="text" class="campo" name="codigo"  placeholder="1" required="required" aria-describedby="basic-addon1">
-            
             <span class="campo" id="basic-addon1" >Nome</span>
             <input id="codigo" type="text" class="campo" name="nome"  placeholder="Fulano" required="required" aria-describedby="basic-addon1">
-            
+
             <span class="campo" id="basic-addon1" >Descrição</span>
             <input id="descricao" type="text" class="campo" name="descricao"  placeholder="Feijao" required="required" aria-describedby="basic-addon1">
-            
+
             <span class="campo" id="basic-addon1">Marca</span>
             <input id="marca" type="text" class="campo" name="marca"  placeholder="Rio doce" required="required" aria-describedby="basic-addon1">
-                
+
             <span class="campo" id="basic-addon1">Quantidade Unitaria</span>
             <input id="quantidade" type="text" class="campo" name="quantidade_unitaria"  placeholder="0" required="required" aria-describedby="basic-addon1">
-            
+
             <span class="campo" id="basic-addon1">Quantidade Estoque</span>
             <input id="quantidade" type="text" class="campo" name="quantidade_estoque"  placeholder="0" required="required" aria-describedby="basic-addon1">
-            
+
             <input  type="text" class="oculto" name="tipo" value="produto">
-            
+
             <input  type="text" class="oculto" name="operacao" value="cadastro">
-            
+
+            <div class="opcoes  radio">
+                <label><input type="radio" name="optradio" value="tropeiro">Tropeiro</label>
+                <label><input type="radio" name="optradio" value="salada">Salada</label>
+                <label><input type="radio" name="optradio" value="prato">Prato</label>
+                <label><input type="radio" name="optradio" value="espaguete">Espaguete</label>
+                <label><input type="radio" name="optradio" value="refrigerante">Refrigerante</label>
+            </div>
             <button type="submit" class="btn btn-default campo" onclick="verifica()">Cadastrar</button>
 
+            <div class="alert">
+                <h3 class="mensagem">${mensagem}</h3>
+            </div>
         </form>
         <br>
         <br>

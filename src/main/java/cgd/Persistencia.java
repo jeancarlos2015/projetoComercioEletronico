@@ -5,7 +5,6 @@
  */
 package cgd;
 
-
 import cdp.Fornecedor;
 import cdp.Objeto;
 import cdp.Pedido;
@@ -24,12 +23,14 @@ import java.util.List;
  * @author jean
  */
 public class Persistencia {
-    private String url="jdbc:postgresql://localhost:5432/bancoPedidos", 
-            usuario="postgres", senha="ifes";
+
+    private String url = "jdbc:postgresql://localhost:5432/bancoPedidos",
+            usuario = "postgres", senha = "ifes";
     private Connection con;
     private Statement stm;
     private String driver = "org.postgresql.Driver";
     private ResultSet rs;
+
     public boolean executar(String comando) {
         try {
 
@@ -50,49 +51,49 @@ public class Persistencia {
             return false;
         }
     }
- 
-    public  String[] getValores(String comando, Objeto item){
+
+    public String[] getValores(String comando, Objeto item) {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usuario, senha);
-            stm = con.createStatement(); 
+            stm = con.createStatement();
             rs = stm.executeQuery(comando);
-            String result="";
+            String result = "";
             rs.next();
             int index;
             do {
-                for(index=0;index<item.getAtributos().length-1;index++){
-                    result +=rs.getString(item.getAtributos()[index])+",";
+                for (index = 0; index < item.getAtributos().length - 1; index++) {
+                    result += rs.getString(item.getAtributos()[index]) + ",";
                 }
-                result+=rs.getString(item.getAtributos()[index])+";";
-            }while (rs.next());
+                result += rs.getString(item.getAtributos()[index]) + ";";
+            } while (rs.next());
             rs.close();
             stm.close();
-            
+
             //Editado 21/09/2011 para correção: executeQuery é usado para pesquisa, executeUpdate deve ser usado para inserir  
             con.close();
             return result.split(";");
-        } catch (SQLException |ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
+        } catch (SQLException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
             System.out.println(ex.getCause());
-              return null;
+            return null;
         }
-       
+
     }
-    
-    public String obterTabela(String comando){
-            String comando1 = comando.toLowerCase();
-            if(!comando1.contains("where")){
-                return comando.toLowerCase().split("from")[1].trim();
-            }
-            
-            String parte2 = comando1.split("from")[1];
-            String tabela = parte2.split(" ")[1];
-            return tabela;
-       
+
+    public String obterTabela(String comando) {
+        String comando1 = comando.toLowerCase();
+        if (!comando1.contains("where")) {
+            return comando.toLowerCase().split("from")[1].trim();
+        }
+
+        String parte2 = comando1.split("from")[1];
+        String tabela = parte2.split(" ")[1];
+        return tabela;
+
     }
-    
-    private Objeto obterItem(String tabela){
-        switch(tabela){
+
+    private Objeto obterItem(String tabela) {
+        switch (tabela) {
             case "fornecedor":
                 return new Fornecedor();
             case "produto":
@@ -101,64 +102,70 @@ public class Persistencia {
                 return new Pedido();
             default:
                 return null;
-            }
+        }
     }
-  
-    public List<String> obterColunas(String comando){
+
+    public List<String> obterColunas(String comando) {
         String parte1 = null;
-        
         String buffer = comando.toLowerCase();
-        
-        if(!buffer.contains("*from")){
-            parte1 = buffer.split("from")[0];   
-            List<String> list = new ArrayList<>();
-            if(!parte1.contains(",")){
+        List<String> list = new ArrayList<>();
+        if (buffer.contains("as")) {
+            parte1 = buffer.split("as")[1];
+            String coluna = parte1.split("from")[0];
+            list.add(coluna.trim());
+            return list;
+        }
+        if (!buffer.contains("*from")) {
+            parte1 = buffer.split("from")[0];
+            
+            if (!parte1.contains(",")) {
                 list.add(parte1.trim().split(" ")[1]);
                 System.out.println(list);
                 return list;
-            }else{
+            } else {
                 return Arrays.asList(parte1.trim().split(" ")[1].split(","));
             }
-        }else{
+        } else {
             String tabela = obterTabela(comando);
             Objeto item = obterItem(tabela);
-            if(item==null){
+            if (item == null) {
                 return new ArrayList<>();
             }
             return Arrays.asList(item.getAtributos());
         }
-           
+
     }
-    public  String executarSelecao(String comando){
+
+    public String executarSelecao(String comando) {
         try {
             Class.forName(driver);
             String comando1 = comando.toLowerCase();
             con = DriverManager.getConnection(url, usuario, senha);
-            stm = con.createStatement(); 
+            stm = con.createStatement();
             rs = stm.executeQuery(comando1);
-            String result="";
+            String result = "";
             List<String> itens = obterColunas(comando1);
-            
-            while(rs.next()){
-                if(itens.size()==1){
-                    result+=rs.getString(itens.get(0))+";";
-                }else{
-                    for(String dado:itens){
-                        result +=rs.getString(dado)+",";
+            while (rs.next()) {
+                if (itens.size() == 1) {
+                    result += rs.getString(itens.get(0)) + ";";
+                } else {
+                    for (String dado : itens) {
+                        result += rs.getString(dado) + ",";
                     }
-                    result+=";";
+                    result += ";";
                 }
-            }    
+            }
             rs.close();
             stm.close();
             con.close();
             return result;
-        } catch (SQLException |ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
+        } catch (SQLException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
-              return null;
+            return null;
         }
-       
+
     }
+
     /**
      * @return the url
      */

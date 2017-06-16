@@ -10,6 +10,7 @@ import cdp.Objeto;
 import cgd.Dao;
 import cgd.Persistencia;
 import cgt.InterfaceControlar;
+import cih.Tela;
 
 
 
@@ -50,4 +51,5 @@ public abstract class Fabrica {
     public Persistencia criaPersistencia(){return new Persistencia();}
     public abstract HttpServlet criaControle();
     public abstract InterfaceControlar criaApi();
+    public Tela criaTela(){return new Tela();}
 }

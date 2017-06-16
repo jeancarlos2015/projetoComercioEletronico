@@ -39,7 +39,8 @@ public class DaoPedidoTest {
     public void testCadastrar() {
         Pedido pedido = (Pedido) fabrica.criaObjeto();
         Dao dao = fabrica.criaDao();
-        for(int indice=2;indice<100;indice++){
+        int codigo = dao.maiorCodigo();
+        for(int indice=codigo+1;indice<100;indice++){
             pedido.setCodigo_pedido(""+indice);
             pedido.setCodigo_produto("1");
             pedido.setData("12/12/2012");
@@ -57,7 +58,8 @@ public class DaoPedidoTest {
     public void testExcluir() {
         Pedido pedido = (Pedido) fabrica.criaObjeto();
         Dao dao = fabrica.criaDao();
-        for(int indice=2;indice<100;indice++){
+        int codigo = dao.maiorCodigo();
+        for(int indice=3;indice<=codigo;indice++){
             pedido.setCodigo_pedido(""+indice);
             pedido.setCodigo_produto("1");
             pedido.setData("12/12/2012");
@@ -69,9 +71,7 @@ public class DaoPedidoTest {
         }
     }
 
-    /**
-     * Test of existe method, of class DaoPedido.
-     */
+    
     @Test
     public void testExiste() {
         Pedido pedido = (Pedido) fabrica.criaObjeto();
@@ -80,4 +80,9 @@ public class DaoPedidoTest {
         assertTrue(dao.existe(pedido));
     }
     
+    @Test
+    public void testMaiorNumero(){
+        Dao dao = fabrica.criaDao();
+        System.out.println("maior numero: "+dao.maiorCodigo());
+    }
 }

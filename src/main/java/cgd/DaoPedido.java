@@ -91,7 +91,7 @@ public class DaoPedido implements Dao {
     @Override
     public List<Objeto> listar(Objeto objeto) {
 
-        if (objeto.getTipo().equals("produto")) {
+        if (objeto.getTipoProduto().equals("produto")) {
             Produto produto = (Produto) objeto;
             String comando = " SELECT *FROM PEDIDO where codigo_produto = '"+produto.getCodigo_produto()+"'";
             String result = conexao.executarSelecao(comando);
@@ -113,6 +113,14 @@ public class DaoPedido implements Dao {
             return list;
         }
         return null;
+    }
+
+    @Override
+    public int maiorCodigo() {
+        String comando = "select max(codigo_pedido) as codigo_pedido from pedido";
+        String[] result = conexao.executarSelecao(comando).split(";");
+        int codigo = Integer.parseInt(result[0].trim());
+        return codigo;
     }
 
 }

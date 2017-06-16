@@ -18,7 +18,7 @@ public class Produto extends Objeto{
     private int quantidade_estoq=0;
     private String marca="";
     private float preco=0;
-    private String tipo="";
+    private String tipoProduto="";
 
     public Produto() {
         super("produto");
@@ -45,9 +45,7 @@ public class Produto extends Objeto{
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -104,7 +102,7 @@ public class Produto extends Objeto{
     @Override
     public String[] getAtributos() {
         String vetor[] = {"codigo_produto","cnpj","descricao",
-                           "nome","quantidade_unit","quantidade_estoq","marca","preco"};
+                           "nome","quantidade_unit","quantidade_estoq","marca","preco","tipo"};
         return vetor;
     }
     @Override
@@ -155,17 +153,17 @@ public class Produto extends Objeto{
     }
 
     /**
-     * @return the tipo
+     * @return the tipoProduto
      */
-    public String getTipo() {
-        return tipo;
+    public String getTipoProduto() {
+        return tipoProduto;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @param tipoProduto the tipoProduto to set
      */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
     }
     
     

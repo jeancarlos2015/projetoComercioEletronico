@@ -16,9 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jean
  */
-public abstract class TelaAbstract {
-      
-      private List<String> titulos = new ArrayList<>();
+public class Tela {
+       private List<String> titulos = new ArrayList<>();
 
     /**
      * @return the titulos
@@ -37,25 +36,22 @@ public abstract class TelaAbstract {
       public void montahead(PrintWriter pw, String titulo){
         pw.println(" <head>");
         pw.println(" <meta charset='utf-8'>");
+        pw.println("<meta http-equiv='X-UA-Compatible' content='IE=edge'>");
         pw.println(" <meta name='viewport' content='width=device-width, initial-scale=1'>");
         pw.println(" <title>"+titulo+"</title>");
-        pw.println("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>");
-        pw.println("<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>");
-        pw.println("<link rel='icon' href='img/icon.png'>");
-        pw.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>");
-        pw.println("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>");
-        pw.println("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>");
-        pw.println("<link rel='stylesheet' href='css/style.css'/>");
+        pw.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>");
+        pw.println("<script src='js/funcoes.js'></script>");
+        pw.println("<link href='css/bootstrap.min.css' rel='stylesheet'>");
+        pw.println("<link href='css/bootstrap.css' rel='stylesheet'>");
+        pw.println("<link href='css/bootstrap-theme.css' rel='stylesheet'>");
+        pw.println("<link href='css/estilo.css' rel='stylesheet'>");
         pw.println(" </head>");
     }
-      public void topoTabela(PrintWriter pw, String titulo){
-          pw.println("<section class='newsletter container bg-white'>");
-          pw.println("<div class='panel panel-default'>");
-          pw.println("<div class='panel-heading'><h1 class='bg-titulo'>"+titulo+"</h1></div>");
-          pw.println("<div class='panel-body'>");
-          pw.println("</div>");
-          pw.println("<table class='table table-responsive'>");
+      public void topoTabela(PrintWriter pw, String titulo, String classe){
+          pw.println("<h4>"+titulo+"</h4>");
+          pw.println("<table class='table "+classe+"'>");
       }
+      
       public void abreThread(PrintWriter pw){
           pw.println("<thread>");
       }
@@ -83,7 +79,6 @@ public abstract class TelaAbstract {
       public void inicioConteudo(PrintWriter pw){
           pw.println("<tbody>");
           pw.println("<tr>");
-          pw.println("<th scope='row'>1</th>");
       }
       public void abreLinha(PrintWriter pw){
           pw.println("<tr>");
@@ -92,12 +87,12 @@ public abstract class TelaAbstract {
       public void fechaLinha(PrintWriter pw){
           pw.println("</tr>");
       }
+      public void finalTabela(PrintWriter pw){
+          pw.println("</table>");
+      }
       public void finalConteudo(PrintWriter pw){
-          pw.println("</tr>");
           pw.println("</tbody>");
           pw.println("</table>");
-          pw.println("</div>");
-          pw.println("</section>");
       }
       public void inicioBody(PrintWriter pw){
           pw.println("<body>");
@@ -106,18 +101,7 @@ public abstract class TelaAbstract {
       public void fimBody(PrintWriter pw){
           pw.println("</body>");
       }
-      public void montaTabela(PrintWriter pw, String titulo){
-          
-          topoTabela(pw, titulo);
-          titulosTabela(pw, getTitulos());
-          inicioConteudo(pw);
-          pw.println("<td>Feijao</td>");
-          pw.println("<td>Rio Doce</td>");
-          pw.println("<td>Preco</td>");
-          finalConteudo(pw);
-          
-          
-      }
+      
       
       
       public void montarodape(PrintWriter pw) {
@@ -141,8 +125,8 @@ public abstract class TelaAbstract {
         pw.println("});");
         pw.println("</script>"); 
     }
-    public void criaItemMenu(PrintWriter pw,String classe, String url, String item){
-        pw.println("<li class='"+classe+"'><a href='"+url+"'>"+item+"</a></li>");
+    public void criaItemMenu(PrintWriter pw,String url, String item){
+        pw.println("<li role='presentation' ><a href='"+url+"'>"+item+"</a></li>");
     }
     public void criaCampo(PrintWriter pw, String nome, String placeholder,String classe){
         pw.println("<input class='"+classe+"' type='text'  name='"+nome+"' placeholder='"+placeholder+"' required>");
@@ -153,7 +137,7 @@ public abstract class TelaAbstract {
     public void criaCampoOculto(PrintWriter pw, String tipo, String value){
         pw.println("<input class='oculto' type='text' value='"+value+"'  name='"+tipo+"'>");
     }
-    public void abreFormulario(PrintWriter pw, String controlador, String titulo){
+    public void abreFormulario(PrintWriter pw, String controlador){
         pw.println("<form method='post' class='newsletter' action='"+controlador+"'>");
     }
     public void fechaFormulario(PrintWriter pw){
@@ -174,6 +158,14 @@ public abstract class TelaAbstract {
         }
         return true;
     }
+    public static boolean validaOpt(HttpServletRequest request, String[] atributos){
+        for(String atributo:atributos){
+            if(request.getParameter(atributo)!=null){
+                return true;
+            }
+        }
+        return false;
+    }
     public void inicioHtml(HttpServletResponse response) throws IOException{
         PrintWriter pw = response.getWriter();
             pw.println("<!DOCTYPE html>");
@@ -182,11 +174,21 @@ public abstract class TelaAbstract {
    public void fimHtml(PrintWriter pw){
        pw.println("</html>");
    }
+    public void abreMenu(PrintWriter pw){
+        pw.println("<nav class='navbar navbar-inverse'>");
+        pw.println("<ul class='nav nav-pills'>");
+    }
+    
+    public void fechaMenu(PrintWriter pw){
+        pw.println("</ul>");
+        pw.println("</nav>");
+    }
     public void montapagina(HttpServletResponse response){}
     public void montamenu(PrintWriter pw) {}
     public void montacampos(PrintWriter pw, String titulo, String tipo){}
     public void montabody(PrintWriter pw, String titulo){
         
     }
+    
       
 }

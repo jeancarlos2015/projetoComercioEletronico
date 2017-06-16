@@ -19,6 +19,7 @@ import static padroes.Tipo.fornecedor;
 public class DaoFornecedorTest {
     private final Fabrica fabrica = Fabrica.make(fornecedor);
     private final Dao dao = fabrica.criaDao();
+    private int codigo=0;
   
     @Test
     public void testListar() {
@@ -51,7 +52,8 @@ public class DaoFornecedorTest {
         fornecedor.setEndereco("Rua teste");
         fornecedor.setNome("Teste");
         fornecedor.setTelefone("33413212");
-        for(int indice=3;indice<100;indice++){
+        codigo = dao.maiorCodigo();
+        for(int indice=codigo+1;indice<100;indice++){
             fornecedor.setCnpj(""+indice);
             if(!dao.existe(fornecedor)){
                 dao.cadastrar(fornecedor);
@@ -71,7 +73,8 @@ public class DaoFornecedorTest {
         fornecedor.setEndereco("Rua teste");
         fornecedor.setNome("Teste");
         fornecedor.setTelefone("33413212");
-        for(int indice=3;indice<100;indice++){
+        codigo = dao.maiorCodigo();
+        for(int indice=3;indice<=codigo;indice++){
             fornecedor.setCnpj(""+indice);
             if(dao.existe(fornecedor)){
                 dao.excluir(fornecedor);

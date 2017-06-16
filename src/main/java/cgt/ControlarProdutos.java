@@ -6,6 +6,8 @@
 package cgt;
 
 
+import cdp.Objeto;
+import cdp.Produto;
 import padroes.Fabrica;
 import static padroes.Tipo.produto;
 
@@ -16,8 +18,13 @@ import static padroes.Tipo.produto;
 public class ControlarProdutos extends Controlar{
 
     public ControlarProdutos() {
-        super(Fabrica.make(produto));
+        super(produto);
     }
-
+@Override
+    public boolean cadastrar(Objeto item) {
+        Produto produto = (Produto) item;
+        produto.setCodigo_produto(""+(dao.maiorCodigo()+1));
+        return dao.cadastrar(produto);   
+    }
     
 }

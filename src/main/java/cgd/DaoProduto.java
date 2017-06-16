@@ -39,6 +39,7 @@ public class DaoProduto implements Dao {
             resultado.setQuantidade_estoq(dado[5]);
             resultado.setMarca(dado[6]);
             resultado.setPreco(dado[7]);
+            resultado.setTipoProduto(dado[8]);
             list.add(resultado);
         }
         return list;
@@ -47,7 +48,7 @@ public class DaoProduto implements Dao {
     @Override
     public boolean cadastrar(Objeto objeto) {
         Produto produto = (Produto) objeto;
-        String comando = "INSERT INTO PEDIDO(codigo_produto, cnpj, descricao, nome, marca, quantidade_unit, quantidade_estoq, preco) VALUES('" + produto.getCodigo_produto() + "','" + produto.getCnpj() + "','" + produto.getDescricao() + "','" + produto.getNome() + "','" + produto.getMarca() + "'," + produto.getQuantidade_unit() + "," + produto.getQuantidade_estoq() + ")";
+        String comando = "INSERT INTO PEDIDO(codigo_produto, cnpj, descricao, nome, marca, quantidade_unit, quantidade_estoq, preco,tipo) VALUES('" + produto.getCodigo_produto() + "','" + produto.getCnpj() + "','" + produto.getDescricao() + "','" + produto.getNome() + "','" + produto.getMarca() + "'," + produto.getQuantidade_unit() + "," + produto.getQuantidade_estoq()+"','"+produto.getTipoProduto()+ "')";
         return conexao.executar(comando);
     }
 
@@ -89,13 +90,14 @@ public class DaoProduto implements Dao {
             resultado.setQuantidade_estoq(dado[5]);
             resultado.setMarca(dado[6]);
             resultado.setPreco(dado[7]);
+            resultado.setTipoProduto(dado[8]);
         }
         return resultado;
     }
 
     @Override
     public List<Objeto> listar(Objeto objeto) {
-        if (objeto.getTipo().equals("produto")) {
+        if (objeto.getTipoProduto().equals("produto")) {
             Produto produto = (Produto) objeto;
             String comando = " SELECT *FROM PEDIDO where codigo_produto = '" + produto.getCodigo_produto() + "'";
             String result = conexao.executarSelecao(comando);
@@ -112,6 +114,14 @@ public class DaoProduto implements Dao {
             return list;
         }
         return null;
+    }
+
+    @Override
+    public int maiorCodigo() {
+        String comando = "select max(codigo_produto) as codigo_produto from produto";
+        String[] result = conexao.executarSelecao(comando).split(";");
+        int codigo = Integer.parseInt(result[0].trim());
+        return codigo;
     }
 
 }

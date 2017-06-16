@@ -19,4 +19,5 @@ public interface Dao {
     public boolean excluir(Objeto objeto);
     public boolean existe(Objeto objeto);
     public Objeto buscar(Objeto objeto);
+    public int maiorCodigo();
 }

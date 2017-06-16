@@ -26,9 +26,10 @@ public class ConexaoBancoTest {
      */
     @Test
     public void testObterColunas() {
-        
-        String comando ="Select cnpj from produto where cpng='fdsafdsa'";
-        
+        Persistencia conexao = new Persistencia();
+        String comando ="Select max(preco) as preco from produto";
+        String[] result = conexao.executarSelecao(comando).split(";");
+        System.out.println(result[0].trim());
     }
 
     /**
